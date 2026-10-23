@@ -1,0 +1,142 @@
+:root {
+  color-scheme: light;
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  --paper: #f4f4f3;
+  --ink: #111214;
+}
+
+* { box-sizing: border-box; }
+html { min-width: 280px; background: var(--paper); }
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  background: radial-gradient(ellipse at 50% 43%, #fafaf9 0%, var(--paper) 65%);
+}
+button, a { -webkit-tap-highlight-color: transparent; }
+button { font: inherit; }
+button:focus-visible, a:focus-visible { outline: 2px solid #5a5d62; outline-offset: 7px; }
+
+.masthead, .footer {
+  position: absolute;
+  z-index: 3;
+  left: clamp(22px, 4vw, 56px);
+  right: clamp(22px, 4vw, 56px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.masthead { top: 32px; }
+.wordmark { display: inline-flex; align-items: center; color: inherit; text-decoration: none; font-size: 18px; font-weight: 800; letter-spacing: -.9px; }
+.wordmark svg { width: 23px; height: 23px; margin-right: 9px; }
+.wordmark-period { color: #8c8e91; }
+.state { display: flex; align-items: center; gap: 8px; font-size: 9px; letter-spacing: 1.6px; text-transform: uppercase; color: #747579; }
+.state-dot { width: 5px; height: 5px; border-radius: 50%; background: #b4b5b6; transition: background 200ms, box-shadow 200ms; }
+body.is-attached .state-dot { background: #161719; box-shadow: 0 0 0 4px #1617190b; }
+
+.stage { min-height: 100vh; min-height: 100svh; display: grid; place-items: center; padding: 100px 20px 170px; }
+.scene { position: relative; z-index: 1; }
+.button-anchor { position: relative; width: clamp(258px, 65vw, 370px); height: clamp(84px, 18vw, 110px); }
+.web { position: fixed; z-index: 0; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+
+.venom-button {
+  --light-x: 55%;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 0 20px;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid #181a1d;
+  border-radius: 999px;
+  background:
+    radial-gradient(ellipse at var(--light-x) 0%, #383c42 0%, transparent 53%),
+    linear-gradient(108deg, #040506 3%, #171a1d 16%, #08090b 36%, #090a0c 64%, #2b2e31 88%, #060708 100%);
+  box-shadow:
+    0 2px 3px #00000035,
+    0 13px 20px -8px #161a2055,
+    0 26px 38px -16px #1b202533,
+    inset 0 1px 2px #ffffff78,
+    inset 0 -5px 7px #000,
+    inset 3px 0 6px #ffffff14,
+    inset -3px 0 6px #ffffff24;
+  color: #f7f7f7;
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  will-change: transform;
+}
+.venom-button::before {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border: 1px solid #ffffff15;
+  border-radius: inherit;
+  box-shadow: inset 0 0 3px #ffffff0c, inset 0 -7px 5px #000000c4;
+  pointer-events: none;
+  z-index: 3;
+}
+.venom-button::after {
+  content: "";
+  position: absolute;
+  height: 7px;
+  bottom: 5px;
+  left: 14%;
+  right: 12%;
+  border-radius: 50%;
+  background: linear-gradient(90deg, transparent, #b9bec53b 70%, transparent);
+  filter: blur(3px);
+  pointer-events: none;
+}
+.reflection { position: absolute; pointer-events: none; }
+.reflection-top { top: 8px; left: 29%; width: 43%; height: 15px; border-radius: 50%; background: #b4bcc343; transform: skewX(-22deg); filter: blur(.8px); }
+.reflection-left { left: 13px; top: 12px; width: 27px; height: 77%; border-radius: 50%; background: linear-gradient(155deg, #d6dfec4a, #848b9712 40%, #b7c2d133 65%, transparent); transform: rotate(13deg); filter: blur(5px); }
+.reflection-right { right: 27px; top: 5px; width: 47px; height: 78%; border-radius: 45% 48% 38% 44%; transform: rotate(24deg); background: linear-gradient(100deg, #e9eef526, #e5e8ed4d 40%, #abb0b915 74%, #edf0f33b); box-shadow: -9px 0 15px #c4c9d014; filter: blur(1.1px); }
+.button-label { position: relative; z-index: 2; padding-bottom: 2px; font-family: Arial, Helvetica, sans-serif; font-size: clamp(27px, 5.5vw, 35px); font-weight: 900; letter-spacing: -1.5px; -webkit-text-stroke: .3px currentColor; white-space: nowrap; text-shadow: 0 1px 0 #ffffff52, 0 2px 3px #000; }
+
+.hint { position: absolute; top: calc(100% + 112px); left: 50%; width: min(340px, 90vw); text-align: center; transform: translateX(-50%); pointer-events: none; transition: opacity 250ms ease; }
+body.is-attached .hint { opacity: 0; }
+.hint p { margin: 0; }
+.hint-title { font-size: 13px; font-weight: 600; letter-spacing: -.1px; color: #54565a; }
+.hint-description { margin-top: 9px !important; font-size: 11px; letter-spacing: .1px; line-height: 1.6; color: #83858a; }
+
+.hand-cursor { position: fixed; z-index: 5; top: 0; left: 0; width: 43px; height: 51px; pointer-events: none; opacity: 0; transform-origin: 40% 4%; filter: drop-shadow(3px 6px 3px #00000018); will-change: transform; }
+.hand-cursor svg { display: block; width: 100%; height: 100%; }
+body.has-venom-cursor .stage, body.has-venom-cursor .venom-button { cursor: none; }
+
+.footer { bottom: 26px; color: #85868a; font-size: 10px; letter-spacing: .2px; }
+.edition span { color: #b0b1b4; margin-left: 6px; }
+.replay { display: inline-flex; align-items: center; gap: 7px; min-height: 40px; padding: 9px 2px 9px 10px; color: #626468; border: 0; border-radius: 4px; background: transparent; font-size: 11px; cursor: pointer; transition: color 180ms; }
+.replay:hover { color: #111214; }
+.replay svg { width: 17px; height: 17px; }
+.sr-only { position: absolute; top: 0; left: 0; width: 1px; height: 1px; margin: 0; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+@media (max-width: 480px) {
+  .masthead { top: 24px; }
+  .wordmark { font-size: 16px; }
+  .state { font-size: 8px; }
+  .footer { bottom: 18px; }
+  .edition { max-width: 180px; font-size: 9px; line-height: 1.8; }
+  .edition span { display: none; }
+  .hint { top: calc(100% + 104px); }
+}
+@media (max-height: 520px) {
+  .stage { min-height: 440px; }
+  .footer { position: relative; inset: auto; margin: 0 24px 12px; }
+  .hint { top: calc(100% + 65px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; }
+  .venom-button { will-change: auto; }
+  .venom-button:active { filter: brightness(1.2); }
+}
+@media (forced-colors: active) {
+  .web, .reflection, .hand-cursor { display: none; }
+  .venom-button { border: 2px solid ButtonText; }
+  body.has-venom-cursor .stage { cursor: auto; }
+  body.has-venom-cursor .venom-button { cursor: pointer; }
+}
